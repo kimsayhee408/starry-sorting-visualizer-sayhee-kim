@@ -9,7 +9,7 @@ https: {
 
 LENGTH = 100; //length of array.  Default is 100 (100 items).  BUT whenever generateNewArray (NOT createRandomArray) gets called, this length value gets reset to whatever is the current length slider input value (level).
 const MAX_VALUE = 200; //Max value in array.  hardcoded
-// const UNIT = 500 / MAX_VALUE;  // SHE DOESNT USE THIS ANYWHERE THO
+const UNIT = 500 / MAX_VALUE;
 SPEED = 50; //initial sorting speed.
 sorted = false;
 ARR = createRandomArray(LENGTH, MAX_VALUE);
@@ -36,13 +36,13 @@ function generateNewArray() {
   sorted = false;
 }
 
-// callback function registered to the clicking event of each button in the tabLinks corresponding to a sort.  ex. clicking the 'Bubble Sort' button triggers sort(this, 'bubble')
-//	<button onclick="sort(this,'bubble')" class="tablinks" id="defaultOpen">Bubble Sort</button>
+// callback function registered to the clicking event of each button in the sort-button corresponding to a sort.  ex. clicking the 'Bubble Sort' button triggers sort(this, 'bubble')
+//	<button onclick="sort(this,'bubble')" class="sort-button" id="defaultOpen">Bubble Sort</button>
 // 'this' as first arg ==> refers to the button element ==> we want to know "this" just so we can "disable" all the buttons other than 'this'
 function sort(elm, type) {
-  if (sorted == false) {
-    disableButtons(); // disable all tablinks buttons
-    elm.style.color = 'var(--selected-sort-type-text)'; // the clicked button gets a diff colored font (green) (differentiates it from the other buttons by saying "i'm the active sort")
+  if (sorted === false) {
+    disableButtons(); // disable all sort-button buttons
+    elm.style.color = 'var(--theme-turquoise)'; // the clicked button gets a diff colored font (green) (differentiates it from the other buttons by saying "i'm the active sort")
     // route each 'type' arg to its matching sorting function and the value of the global constant 'algorithm' (to 'merge', or 'bubble' etc)
     switch (type) {
       case 'merge':
@@ -67,6 +67,10 @@ function sort(elm, type) {
         break;
     }
   }
+  /////////////////////////// testing out these:
+  // enableButtons();
+  // sorted = true;
+  ////////////////
 }
 
 function mergeInterval(speed) {
@@ -169,10 +173,6 @@ function swappingAnimationsInterval() {
 // "sets" the elementBars state, which is initially [] to all the elements with className elm
 const setElementBars = () => {
   elementBars = document.body.getElementsByClassName('elm');
-  // elementBars = document.body
-  // .getElementsByClassName('box')[0]
-  // .getElementsByClassName('array')[0]
-  // .getElementsByClassName('elm');
 };
 
 function mergeSort(arr) {
@@ -205,6 +205,7 @@ function bubbleSort(arr) {
   setElementBars();
   animationIdx = 0;
   animations = doBubbleSort(arr);
+
   swappingAnimationsInterval();
 }
 
@@ -216,16 +217,20 @@ function selectionSort(arr) {
   swappingAnimationsInterval();
 }
 
-///////////// I GET THESE:
+/////////////////////////////////////////////////////////////////
+// ENABLING / DISABLING BUTTONS /////////////////////////////////
+/////////////////////////////////////////////////////////////////
 
-// YAY
 function disableButtons() {
-  var buttons = document.getElementsByClassName('tablinks'); // these are ALL the buttons that say each sort (+ generate New Array button)
+  var buttons = document.getElementsByClassName('sort-button'); // these are ALL the buttons that say each sort (+ generate New Array button)
   // add various styling to each button element to make them look disabled
+  console.log(buttons);
+  // ALL THESE SEEM TO WORK:
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].disabled = true;
     buttons[i].style.opacity = '0.5';
     buttons[i].classList.add('noHover');
+    buttons[i].style.color = '#6f6c72';
     // buttons[i].onmouseover = function () {
     //   buttons[i].style.color = 'white';
     // };
@@ -235,18 +240,23 @@ function disableButtons() {
   }
 }
 
-// YAY
 function enableButtons() {
-  var buttons = document.getElementsByClassName('tablinks');
+  var buttons = document.getElementsByClassName('sort-button');
   // restore all changes done by disableButtons
+  console.log('inside enableButtons');
 
+  // ALL THIS SEEMS TO WORK AS WELL
   for (let i = 0; i < buttons.length; i++) {
-    buttons[i].style.color = 'var(--text-color)';
+    buttons[i].style.color = 'white';
     buttons[i].classList.remove('noHover');
     buttons[i].disabled = false;
     buttons[i].style.opacity = '1';
   }
 }
+
+/////////////////////////////////////////////////////////////////
+// CLEAR / DISPLAY ARRAY/////// /////////////////////////////////
+/////////////////////////////////////////////////////////////////
 
 // gets rid of all the bars added by displayArray
 function clearArr() {
@@ -288,17 +298,6 @@ function displayArray(arr) {
   }
 } // so ex for displayArray([2, 4, 6]) ===> length is 3 ==> so you would get 3 if these things appended as child elements to the <div class='array'>
 
-// width = 1100 / 3 = let's say 433
-
-{
-  /* <div
-  class='elm'
-  style='background: linear-gradient(to bottom, var(--theme-turquoise), var(--bar-bottom-gradient))'
-  width='113'
-  height=
-  ></div> */
-}
-
 function updateSpeed() {
   // REsets (updates) the interval (speed) of the sort.
   if (interval) {
@@ -331,6 +330,10 @@ const showSpeedRangeValue = (val) => {
 const showLengthRangeValue = (val) => {
   console.log(val);
 };
+
+/////////////////////////////////////////////////////////////////
+// EVENT LISTENERS /////////////////////////////////
+/////////////////////////////////////////////////////////////////
 
 speedRangeEl.addEventListener('input', function (event) {
   showSpeedRangeValue(event.target.value);

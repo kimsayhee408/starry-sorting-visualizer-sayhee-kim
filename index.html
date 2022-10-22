@@ -6,24 +6,40 @@
 </head>
 
 <body>
+
+  <div class="stars"></div>
+  <div class="twinkling"></div>
+  <div class="clouds"></div>
   <div id="wrapper">
+
+    <!-- <div class="title">
+      <h1>A Dark and Mysterious Night</h1>
+    </div> -->
+
+
+
+
+
+
+
+
     <div class="title-container">
       <h1>Sorting Visualizer</h1>
     </div>
 
 
     <div class="buttons-container">
-      <button onclick="sort(this,'bubble')" class="tablinks" id="defaultOpen">
+      <button onclick="sort(this,'bubble')" class="sort-button" id="defaultOpen">
         Bubble
       </button>
-      <button onclick="sort(this,'merge')" class="tablinks">Merge</button>
-      <button onclick="sort(this,'selection')" class="tablinks">
+      <button onclick="sort(this,'merge')" class="sort-button">Merge</button>
+      <button onclick="sort(this,'selection')" class="sort-button">
         Selection
       </button>
-      <button onclick="sort(this,'insertion')" class="tablinks">
+      <button onclick="sort(this,'insertion')" class="sort-button">
         Insertion
       </button>
-      <button onclick="sort(this,'quick')" class="tablinks">Quick</button>
+      <button onclick="sort(this,'quick')" class="sort-button">Quick</button>
 
     </div>
 
@@ -55,7 +71,7 @@
 
     </div>
     <div class="new-array-button-container">
-      <button onclick="generateNewArray();" class="tablinks" id="new-array-button">
+      <button onclick="generateNewArray();" class="sort-button" id="new-array-button">
         Create a new unsorted array
       </button>
     </div>
