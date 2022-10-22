@@ -11,3 +11,8 @@ This project helps visualize 5 popular sorting algorithms. I challenged myself t
 - quick
 - merge
 - insertion
+
+# Features:
+
+- bars responsive to screen size
+- customizable array size and sorting speed
