@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Sorting Algorithms Visualizer</title>
+</head>
+
+<body>
+  <div id="wrapper">
+    <div class="title-container">
+      <h1>Sorting Visualizer</h1>
+    </div>
+
+
+    <div class="buttons-container">
+      <button onclick="sort(this,'bubble')" class="tablinks" id="defaultOpen">
+        Bubble
+      </button>
+      <button onclick="sort(this,'merge')" class="tablinks">Merge</button>
+      <button onclick="sort(this,'selection')" class="tablinks">
+        Selection
+      </button>
+      <button onclick="sort(this,'insertion')" class="tablinks">
+        Insertion
+      </button>
+      <button onclick="sort(this,'quick')" class="tablinks">Quick</button>
+
+    </div>
+
+    <div class="box" id="box">
+      <div class="array" id="array"></div>
+    </div>
+
+    <div class="array-settings-container">
+      <div class="sliders-container">
+        <div class="sliderDiv">
+          <div class="label">Sort speed</div>
+
+          <div class="range">
+            <div class="div-group range__slider">
+              <input id="speedRange" type="range" min="1" max="200" value="100" step="1" class="slider" />
+            </div>
+          </div>
+        </div>
+        <div class="sliderDiv">
+          <div class="label" class="slider">Array length</div>
+          <div class="range">
+            <div class="div-group range__slider">
+
+              <input id="lengthRange" type="range" min="2" max="200" value="100" step="1" class="slider" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="new-array-button-container">
+      <button onclick="generateNewArray();" class="tablinks" id="new-array-button">
+        Create a new unsorted array
+      </button>
+    </div>
+  </div>
+
+
+  </div>
+</body>
+<link rel="stylesheet" href="styles.css" />
+<script src="util/sorting-algorithms.js" type="text/javascript"></script>
+<script src="util/array-helpers.js" type="text/javascript"></script>
+<script src="util/slider.js" type="text/javascript"></script>
+<script src="index.js" type="text/javascript"></script>
+
+</html>

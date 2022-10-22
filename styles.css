@@ -1,0 +1,307 @@
+/*
+.frosted {
+  backdrop-filter: blur(5px);
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+centered-div {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// cool effect - like a black and white filter effect with dots: https://css-irl.info/css-halftone-patterns/ 
+
+https://markodenic.com/css-tips/
+ 
+https://blog.datawrapper.de/colorguide/ */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+
+:root {
+  --font: 'Montserrat', sans-serif;
+  --main-background-color: rgb(213, 7, 7);
+
+  /* Bar colors: */
+  --theme-turquoise: #02ede5;
+  --bar-bottom-gradient: #2c0303;
+  /* Slider Colors: */
+  --slider-thumb: #7507f5;
+  --slider-background: #01c7d5;
+  /* Button Colors: */
+  --selected-sort-type-text: cyan;
+  --sort-type-buttons-background: blue;
+  /* Two main Sections:*/
+  --body-background: red;
+  --wrapper-background: yellow;
+  /* 5 sections inside Wrapper:*/
+  --title-container-background-color: brown;
+  --buttons-container-background-color: green;
+  --box-background: blue;
+  --array-settings-container-background: pink;
+  --new-array-button-container-background: silver;
+  --slider-label-font-color: #8e50f9;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: var(--body-background);
+  display: flex;
+  flex-direction: column;
+}
+
+/* main wrapper - should be responsive*/
+#wrapper {
+  width: 95vw;
+  height: 95vh;
+  margin: 0 auto;
+  vertical-align: center;
+  align-self: center;
+  background-color: var(--wrapper-background);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ******************
+*********************
+  5 BIG CONTAINERS OF WRAPPER
+*********************
+********************* */
+
+.title-container {
+  background-color: var(--title-container-background-color);
+  margin-top: 10vh;
+  margin-bottom: 30px;
+}
+
+.buttons-container {
+  /* these two lines keep the buttons containers in one line, with space between items but no empty space on the farmost L and R sides them*/
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-between;
+  width: 95%;
+  margin: 0 auto;
+  background-color: var(--buttons-container-background-color);
+}
+
+/* .box holds .array + .elm */
+.box {
+  /* z-index: -5; */
+
+  margin-top: 25px;
+  flex-direction: column;
+  height: 50vh;
+  background-color: var(--box-background);
+  border-radius: 10px;
+  box-shadow: 9px 8px 22px 9px rgba(108, 112, 240, 0.06);
+}
+
+.array-settings-container {
+  background-color: var(--array-settings-container-background);
+  width: 80%;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* new array button container*/
+.new-array-button-container {
+  background-color: var(--new-array-button-container-background);
+  display: flex;
+  justify-content: center;
+}
+
+#new-array-button {
+  background-color: orange;
+  font-family: var(--font);
+}
+
+/* ******************
+*********************
+ TITLE
+*********************
+********************* */
+h1 {
+  position: relative;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  text-align: center;
+}
+
+/* ******************
+*********************
+ SLIDERS
+*********************
+********************* */
+
+.sliders-container {
+  display: flex;
+
+  align-items: center;
+  /* margin-bottom: 10px; */
+}
+
+.sliderDiv {
+  height: 50px;
+  width: 100%;
+  align-items: center;
+  display: flex;
+
+  align-items: center;
+}
+
+/* the two divs saying "Sorting Speed:" and "Array Size"*/
+.label {
+  /* float as in relative to the sliders*/
+
+  border: none;
+  outline: none;
+  padding: 0px 10px 0px 0px;
+  font-size: 18px;
+  color: var(--slider-label-font-color);
+  font-family: var(--font);
+  height: 50px;
+  overflow: hidden;
+  display: flex;
+  flex-flow: wrap;
+  text-align: end;
+  background-color: rgb(168, 148, 230);
+}
+
+/* this is a good config */
+.slider {
+  opacity: 0.5;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+
+/* makes the slider full opacity on hover (indicating it's "active") */
+.slider:hover {
+  opacity: 1;
+}
+
+/* Range styling  */
+.range {
+  display: flex;
+  /* margin-top: 4%; */
+  /* background-color: rgb(237, 182, 100); */
+  width: 100%;
+}
+
+.range__slider {
+  width: 100%;
+}
+
+.range__slider [type='range'] {
+  width: 100%;
+  -webkit-appearance: none;
+  height: 13px;
+  border-radius: 6px;
+  outline: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* thumb is the circle part of the slider */
+.range__slider [type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: var(--slider-background);
+  border: var(--slider-thumb) 5px solid;
+  cursor: pointer;
+  -webkit-transition: background 0.15s ease-in-out;
+  transition: background 0.15s ease-in-out;
+}
+
+/* .range__slider [type='range']::-webkit-slider-thumb:hover {
+  background: var(--slider-background);
+} */
+
+.range__slider [type='range']::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--slider-background);
+  border: var(--slider-thumb) 5px solid;
+  cursor: pointer;
+  -webkit-transition: background 0.15s ease-in-out;
+  transition: background 0.15s ease-in-out;
+}
+
+input::-moz-focus-inner,
+input::-moz-focus-outer {
+  border: 0;
+}
+
+.noHover {
+  pointer-events: none;
+}
+
+/* ******************
+*********************
+ SORT BUTTONS
+*********************
+********************* */
+
+.buttons-container button {
+  background-color: var(--sort-type-buttons-background);
+  border: none;
+  float: left;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  border-radius: 15px;
+  font-size: 17px;
+  color: white;
+  font-family: var(--font);
+}
+
+.buttonsContainer button:hover {
+  border: 2px solid var(--theme-turquoise);
+}
+
+/* .buttonsContainer button.active {
+  border: px solid var(--theme-turquoise);
+} */
+
+/* ******************
+*********************
+ ARRAY & ELM
+*********************
+********************* */
+
+.array {
+  z-index: 3;
+  display: flex;
+  /* align elms at bottom*/
+  align-items: flex-end;
+  justify-content: center;
+  /* */
+  margin: 0 auto;
+  align-self: center;
+  width: 98%;
+  /* width is 98% to prevent first and last bars getting trimmed b/c slight border radius on the container (.box). */
+  height: 100%;
+}
+
+.elm {
+  position: relative;
+  float: left;
+  /* the flex-grow allows the bars to widen as container widens (the array div)*/
+  flex-grow: 1;
+  flex-shrink: 1;
+  z-index: 3;
+}
